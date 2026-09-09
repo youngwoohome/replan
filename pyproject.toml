@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "replan-serving"
+version = "0.1.0"
+description = "Reallocating released parallelism for large-N adaptive Best-of-N serving"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Youngwoo Jung" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "ruff==0.16.1"]
+figures = ["matplotlib>=3.8", "numpy>=1.26"]
+
+[project.scripts]
+replan-serve = "replan.serve:main"
+replan-collect = "replan.collect:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["replan"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
